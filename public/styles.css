@@ -52,133 +52,7 @@ body::before {
     z-index: 0;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.8;
-}
-
-/* Variation 1: Slow Rolling Blues */
-body.gradient-1::after {
-    background:
-        radial-gradient(circle at 20% 50%, rgba(74, 105, 189, 0.32) 0%, rgba(74, 105, 189, 0.1) 20%, transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(116, 185, 255, 0.28) 0%, rgba(116, 185, 255, 0.08) 20%, transparent 35%),
-        radial-gradient(circle at 40% 20%, rgba(58, 90, 150, 0.24) 0%, rgba(58, 90, 150, 0.06) 20%, transparent 35%);
-    animation: gradientFloat1 15s ease-in-out infinite;
-    filter: blur(40px);
-}
-
-@keyframes gradientFloat1 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(6%, -6%) rotate(5deg); }
-    66% { transform: translate(-6%, 6%) rotate(-5deg); }
-}
-
-/* Variation 2: Vibrant Swirl */
-body.gradient-2::after {
-    background:
-        radial-gradient(circle at 30% 40%, rgba(100, 140, 230, 0.38) 0%, rgba(100, 140, 230, 0.12) 20%, transparent 30%),
-        radial-gradient(circle at 70% 60%, rgba(140, 200, 255, 0.35) 0%, rgba(140, 200, 255, 0.1) 20%, transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(80, 120, 200, 0.32) 0%, rgba(80, 120, 200, 0.08) 20%, transparent 28%);
-    animation: gradientFloat2 12s ease-in-out infinite;
-    filter: blur(40px);
-}
-
-@keyframes gradientFloat2 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(8%, -8%) rotate(15deg); }
-}
-
-/* Variation 3: Large Gentle Waves */
-body.gradient-3::after {
-    background:
-        radial-gradient(ellipse at 10% 30%, rgba(60, 100, 180, 0.35) 0%, rgba(60, 100, 180, 0.1) 25%, transparent 40%),
-        radial-gradient(ellipse at 90% 70%, rgba(100, 160, 240, 0.33) 0%, rgba(100, 160, 240, 0.08) 25%, transparent 40%);
-    animation: gradientFloat3 20s ease-in-out infinite;
-    filter: blur(40px);
-}
-
-@keyframes gradientFloat3 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-7%, 7%); }
-}
-
-/* Variation 4: Multiple Small Orbs */
-body.gradient-4::after {
-    background:
-        radial-gradient(circle at 15% 25%, rgba(80, 120, 200, 0.35) 0%, rgba(80, 120, 200, 0.1) 15%, transparent 22%),
-        radial-gradient(circle at 85% 35%, rgba(100, 150, 230, 0.33) 0%, rgba(100, 150, 230, 0.08) 15%, transparent 22%),
-        radial-gradient(circle at 45% 65%, rgba(70, 110, 190, 0.3) 0%, rgba(70, 110, 190, 0.06) 15%, transparent 22%),
-        radial-gradient(circle at 65% 85%, rgba(90, 140, 220, 0.28) 0%, rgba(90, 140, 220, 0.05) 15%, transparent 22%);
-    animation: gradientFloat4 14s ease-in-out infinite;
-    filter: blur(40px);
-}
-
-@keyframes gradientFloat4 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(4%, -5%) rotate(8deg); }
-    50% { transform: translate(-4%, 4%) rotate(-8deg); }
-    75% { transform: translate(5%, -4%) rotate(6deg); }
-}
-
-/* Variation 5: Pulsing Radiance */
-body.gradient-5::after {
-    background:
-        radial-gradient(circle at 50% 50%, rgba(90, 140, 220, 0.38) 0%, rgba(90, 140, 220, 0.12) 25%, transparent 38%),
-        radial-gradient(circle at 25% 25%, rgba(70, 110, 200, 0.32) 0%, rgba(70, 110, 200, 0.08) 18%, transparent 28%),
-        radial-gradient(circle at 75% 75%, rgba(110, 170, 240, 0.35) 0%, rgba(110, 170, 240, 0.1) 20%, transparent 32%);
-    animation: gradientFloat5 18s ease-in-out infinite;
-    filter: blur(40px);
-}
-
-@keyframes gradientFloat5 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-    50% { transform: translate(4%, -4%) scale(1.1); opacity: 0.6; }
-}
-
-/* Gradient selector styles */
-.gradient-selector {
-    text-align: center;
-    margin: 20px 0;
-    z-index: 10;
-    position: relative;
-}
-
-.gradient-selector label {
-    color: var(--accent-light);
-    margin-right: 10px;
-    font-size: 0.95rem;
-}
-
-.gradient-selector select {
-    background: rgba(4, 29, 50, 0.8);
-    color: var(--white);
-    border: 1px solid rgba(116, 185, 255, 0.4);
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.gradient-selector select:hover {
-    border-color: rgba(116, 185, 255, 0.7);
-    background: rgba(10, 40, 70, 0.9);
-}
-
-.gradient-selector select:focus {
-    border-color: var(--success);
-    box-shadow: 0 0 8px rgba(0, 180, 255, 0.3);
-}
-
-/* All gradient overlays removed - pure color only */
+/* All gradient overlays and animations removed */
 
 @keyframes rotate {
     from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -291,7 +165,11 @@ header {
     text-align: center;
     margin-top: -20px;
     margin-bottom: 30px;
-    animation: fadeInDown 0.8s ease;
+    animation: fadeInDown 0.8s ease 0.1s both;
+}
+
+header.loaded {
+    animation: fadeInDown 0.8s ease both;
 }
 
 .logo-section {

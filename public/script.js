@@ -1,33 +1,27 @@
-// Initialize with first background and layout
+// Preload critical images to prevent blinking
 document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo-img');
+    const header = document.querySelector('header');
+
+    // Function to ensure smooth loading
+    const ensureImageLoaded = () => {
+        if (logo.complete && logo.naturalHeight !== 0) {
+            // Image is already loaded
+            header.classList.add('loaded');
+        } else {
+            // Wait for image to load
+            logo.addEventListener('load', () => {
+                header.classList.add('loaded');
+            });
+        }
+    };
+
+    ensureImageLoaded();
+
+    // Initialize with first background and layout
     document.body.classList.add('bg-1');
     document.body.classList.add('layout-1');
-
-    // Initialize gradient animation
-    const savedGradient = localStorage.getItem('gradientAnimation') || 'gradient-1';
-    document.body.classList.add(savedGradient);
-    const gradientSelect = document.getElementById('gradientSelect');
-    if (gradientSelect) {
-        gradientSelect.value = savedGradient;
-    }
 });
-
-// Gradient animation switcher
-const gradientSelect = document.getElementById('gradientSelect');
-if (gradientSelect) {
-    gradientSelect.addEventListener('change', (e) => {
-        // Remove all gradient classes
-        document.body.classList.remove('gradient-1', 'gradient-2', 'gradient-3', 'gradient-4', 'gradient-5');
-
-        // Add new gradient class if not "none"
-        if (e.target.value !== 'none') {
-            document.body.classList.add(e.target.value);
-        }
-
-        // Save preference
-        localStorage.setItem('gradientAnimation', e.target.value);
-    });
-}
 
 // Background switcher function
 function changeBackground(bgNumber) {
