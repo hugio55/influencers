@@ -1,0 +1,183 @@
+/* 5 Layout Options for Slot Cards */
+
+/* Option 1: Clean - No additional data (original) */
+body.layout-1 .slot-category,
+body.layout-1 .slot-followers {
+    display: none !important;
+}
+
+/* Option 2: Minimal - Subtle inline layout */
+body.layout-2 .slot-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+body.layout-2 .slot-info {
+    display: flex;
+    align-items: center; /* Changed from baseline to center for single line */
+    gap: 8px;
+    flex: 1;
+    flex-direction: row; /* Ensure horizontal layout */
+}
+
+body.layout-2 .slot-name {
+    font-size: 1rem;
+    margin-bottom: 0; /* Remove any bottom margin */
+}
+
+body.layout-2 .slot-status {
+    font-size: 0.7rem;
+    margin-left: 0;
+    margin-top: 0; /* Ensure on same line */
+}
+
+body.layout-2 .slot-meta {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+body.layout-2 .slot-category {
+    display: block !important;
+    font-size: 0.85rem;
+    color: var(--gray-medium);
+    opacity: 0.6;
+}
+
+body.layout-2 .slot-followers {
+    display: block !important;
+    font-size: 0.9rem;
+    color: var(--accent-light);
+    opacity: 0.7;
+}
+
+/* Option 3: Bold - Prominent center alignment */
+body.layout-3 .slot-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+body.layout-3 .slot-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+body.layout-3 .slot-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+body.layout-3 .slot-category {
+    font-size: 0.75rem;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+body.layout-3 .slot-followers {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-light);
+}
+
+/* Option 4: Tagged - Pills/badges style */
+body.layout-4 .slot-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+body.layout-4 .slot-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.layout-4 .slot-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+body.layout-4 .slot-category {
+    font-size: 0.7rem;
+    color: var(--white);
+    background: rgba(90, 121, 205, 0.3);
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+body.layout-4 .slot-followers {
+    font-size: 0.85rem;
+    color: var(--white);
+    background: rgba(132, 201, 255, 0.2);
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+/* Option 5: Stacked - Vertical layout with icons */
+body.layout-5 .slot-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+body.layout-5 .slot-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.layout-5 .slot-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.layout-5 .slot-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+body.layout-5 .slot-category {
+    color: var(--gray-medium);
+}
+
+body.layout-5 .slot-category::before {
+    content: "📱 ";
+    opacity: 0.5;
+}
+
+body.layout-5 .slot-followers {
+    color: var(--accent-light);
+}
+
+body.layout-5 .slot-followers::before {
+    content: "👥 ";
+    opacity: 0.5;
+}
+
+/* Default to layout-1 (clean) */
+body:not([class*="layout-"]) .slot-category,
+body:not([class*="layout-"]) .slot-followers {
+    display: none;
+}

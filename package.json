@@ -1,0 +1,11 @@
+{
+  "name": "creator-circle-slots",
+  "version": "1.0.0",
+  "description": "Influencer slots signup for Creator Circle",
+  "scripts": {
+    "start": "http-server -p 3300"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
