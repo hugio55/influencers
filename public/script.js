@@ -72,40 +72,42 @@ document.addEventListener('DOMContentLoaded', () => {
 // Removed intersection observer to show all cards immediately
 
 // Add hover sound effect (optional enhancement)
-document.querySelectorAll('.slot.filled').forEach(slot => {
-    slot.addEventListener('mouseenter', () => {
-        slot.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.slot.filled').forEach(slot => {
+        slot.addEventListener('mouseenter', () => {
+            slot.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
     });
-});
 
-// Add ripple effect on click for filled slots
-document.querySelectorAll('.slot.filled').forEach(slot => {
-    slot.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default link behavior
+    // Add ripple effect on click for filled slots
+    document.querySelectorAll('.slot.filled').forEach(slot => {
+        slot.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
 
-        const ripple = document.createElement('div');
-        ripple.style.position = 'absolute';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(116, 185, 255, 0.3)';
-        ripple.style.width = ripple.style.height = '0px';
-        ripple.style.left = e.offsetX + 'px';
-        ripple.style.top = e.offsetY + 'px';
-        ripple.style.transform = 'translate(-50%, -50%)';
-        ripple.style.transition = 'all 0.6s ease-out';
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(116, 185, 255, 0.3)';
+            ripple.style.width = ripple.style.height = '0px';
+            ripple.style.left = e.offsetX + 'px';
+            ripple.style.top = e.offsetY + 'px';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.transition = 'all 0.6s ease-out';
 
-        this.appendChild(ripple);
+            this.appendChild(ripple);
 
-        setTimeout(() => {
-            ripple.style.width = ripple.style.height = '300px';
-            ripple.style.opacity = '0';
-        }, 10);
+            setTimeout(() => {
+                ripple.style.width = ripple.style.height = '300px';
+                ripple.style.opacity = '0';
+            }, 10);
 
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
 
-        // Open lightbox with creator info and click position
-        openLightbox(this, e);
+            // Open lightbox with creator info and click position
+            openLightbox(this, e);
+        });
     });
 });
 
@@ -309,7 +311,7 @@ function getYouTubeHandle(creatorName) {
         'Randy Bowden Jr': null, // No YouTube
         'rBeatz Radio': 'https://youtube.com/@rbeatzradio?si=mtioXQYIHv_9ImRh',
         'Absolute Motivation': 'https://youtube.com/@absolutemotivation?si=AJ6OuS5i4B9QhUIz',
-        'The Martini Guy': 'https://www.youtube.com/channel/UCytNzxSmilgEBychgoKoQsw',
+        'The Martini Guy': 'https://www.youtube.com/channel/UCytNzxSmUqEBychgoKoQssw',
         'MANDO CT': 'https://www.youtube.com/@mando-ct'
     };
     return youtubeUrls[creatorName] || false;
@@ -326,7 +328,7 @@ function getTwitterUrl(creatorName) {
         'CARBZ': 'https://x.com/CarbzXBT',
         'Mercek': 'https://x.com/WorldOfMercek',
         'MANDO CT': 'https://x.com/XMaximist',
-        'Baby': 'https://x.com/lucianlinp933'
+        'Baby': 'https://x.com/liuxiaoling933'
     };
     return twitterUrls[creatorName] || false;
 }
