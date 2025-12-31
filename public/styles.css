@@ -450,7 +450,7 @@ header.loaded {
     gap: 15px;
     max-width: 810px; /* Reduced by 10% from 900px */
     margin: 0 auto;
-    /* Removed animation that was hiding initial cards */
+    animation: floatInFromBottom 1s ease-out 0.3s both;
 }
 
 .slot {
@@ -607,6 +607,17 @@ body.layout-2 .slot-meta {
     from {
         opacity: 0;
         transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
