@@ -281,7 +281,8 @@ function getInstagramUrl(creatorName) {
         'Randy Bowden Jr': 'https://www.instagram.com/randybowdenjr/',
         'rBeatz Radio': 'https://www.instagram.com/rbeatzradio/',
         'Absolute Motivation': 'https://www.instagram.com/absolutemotivationofficial/',
-        'Over Exposed': 'https://www.instagram.com/oe.nft?igsh=MWxxczNrYnFtZHB1YQ=='
+        'Over Exposed': 'https://www.instagram.com/oe.nft?igsh=MWxxczNrYnFtZHB1YQ==',
+        'The Martini Guy': 'https://www.instagram.com/themartiniguy/'
     };
     return instagramUrls[creatorName] || false;
 }
@@ -307,7 +308,9 @@ function getYouTubeHandle(creatorName) {
         'Maegan Eats': 'https://youtube.com/@maeganelena?si=I2C1aDCSWxxAGdeX',
         'Randy Bowden Jr': null, // No YouTube
         'rBeatz Radio': 'https://youtube.com/@rbeatzradio?si=mtioXQYIHv_9ImRh',
-        'Absolute Motivation': 'https://youtube.com/@absolutemotivation?si=AJ6OuS5i4B9QhUIz'
+        'Absolute Motivation': 'https://youtube.com/@absolutemotivation?si=AJ6OuS5i4B9QhUIz',
+        'The Martini Guy': 'https://www.youtube.com/channel/UCytNzxSmilgEBychgoKoQsw',
+        'MANDO CT': 'https://www.youtube.com/@mando-ct'
     };
     return youtubeUrls[creatorName] || false;
 }
@@ -315,7 +318,15 @@ function getYouTubeHandle(creatorName) {
 // Map creator names to Twitter URLs
 function getTwitterUrl(creatorName) {
     const twitterUrls = {
-        'Over Exposed': 'https://x.com/Over___Exposed'
+        'Over Exposed': 'https://x.com/Over___Exposed',
+        'The Martini Guy': 'https://twitter.com/MartiniGuyYT',
+        'Crypto Tony': 'https://x.com/cryptotony__',
+        'The Defi Plug': 'https://x.com/theDefiPlug',
+        'C_POTENS': 'https://x.com/C_POTENS',
+        'CARBZ': 'https://x.com/CarbzXBT',
+        'Mercek': 'https://x.com/WorldOfMercek',
+        'MANDO CT': 'https://x.com/XMaximist',
+        'Baby': 'https://x.com/lucianlinp933'
     };
     return twitterUrls[creatorName] || false;
 }
