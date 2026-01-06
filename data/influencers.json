@@ -1,0 +1,274 @@
+{
+  "settings": {
+    "goalReach": 150000000,
+    "totalSlots": 50
+  },
+  "influencers": [
+    {
+      "id": 1,
+      "name": "Men with the Pot",
+      "category": "Cooking",
+      "followers": 14700000,
+      "social": {
+        "instagram": "https://www.instagram.com/menwiththepot/",
+        "tiktok": "https://www.tiktok.com/@menwiththepot",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 2,
+      "name": "Stack Pack",
+      "category": "Artist",
+      "followers": 2000000,
+      "social": {
+        "instagram": "https://www.instagram.com/stackpack/",
+        "tiktok": "https://www.tiktok.com/@stackpackk",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 3,
+      "name": "Joshua Moore",
+      "category": "Athlete",
+      "followers": 981000,
+      "social": {
+        "instagram": "https://www.instagram.com/joshsmoore/",
+        "tiktok": "https://www.tiktok.com/@joshsmoore",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 4,
+      "name": "rBeatz Radio",
+      "category": "Music",
+      "followers": 714000,
+      "social": {
+        "instagram": "https://www.instagram.com/rbeatzradio/",
+        "tiktok": "https://www.tiktok.com/@rbeatzradio",
+        "twitter": "",
+        "youtube": "https://youtube.com/@rbeatzradio?si=mtioXQYIHv_9ImRh",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 5,
+      "name": "Maegan Eats",
+      "category": "Foodie",
+      "followers": 142000,
+      "social": {
+        "instagram": "https://www.instagram.com/maegan_eats/",
+        "tiktok": "https://www.tiktok.com/@maeganeats",
+        "twitter": "",
+        "youtube": "https://youtube.com/@maeganelena?si=I2C1aDCSWxxAGdeX",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 6,
+      "name": "NOW WUT",
+      "category": "Creator",
+      "followers": 116000,
+      "social": {
+        "instagram": "https://www.instagram.com/nowwutdotcom/",
+        "tiktok": "https://www.tiktok.com/@nowwutdotcom",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 7,
+      "name": "Randy Bowden Jr",
+      "category": "Fashion",
+      "followers": 50000,
+      "social": {
+        "instagram": "https://www.instagram.com/randybowdenjr/",
+        "tiktok": "https://www.tiktok.com/@randybowdenjr",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 8,
+      "name": "Absolute Motivation",
+      "category": "Motivation",
+      "followers": 2300000,
+      "social": {
+        "instagram": "https://www.instagram.com/absolutemotivationofficial/",
+        "tiktok": "https://www.tiktok.com/@absolutemotivationtok",
+        "twitter": "",
+        "youtube": "https://youtube.com/@absolutemotivation?si=AJ6OuS5i4B9QhUIz",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 9,
+      "name": "Science Under Nature",
+      "category": "Science",
+      "followers": 2500,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": "https://scienceundernature.com/"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Over Exposed",
+      "category": "NFT",
+      "followers": 17000,
+      "social": {
+        "instagram": "https://www.instagram.com/oe.nft",
+        "tiktok": "",
+        "twitter": "https://x.com/Over___Exposed",
+        "youtube": "",
+        "discord": "https://discord.gg/xE9VpCHyj9",
+        "website": "https://overexposed.io"
+      }
+    },
+    {
+      "id": 11,
+      "name": "The Martini Guy",
+      "category": "Creator",
+      "followers": 880000,
+      "social": {
+        "instagram": "https://www.instagram.com/themartiniguy/",
+        "tiktok": "",
+        "twitter": "https://twitter.com/MartiniGuyYT",
+        "youtube": "https://www.youtube.com/channel/UCytNzxSmUqEBychgoKoQssw",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 12,
+      "name": "Crypto Tony",
+      "category": "Creator",
+      "followers": 560000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/cryptotony__",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 13,
+      "name": "The Defi Plug",
+      "category": "Creator",
+      "followers": 52000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/theDefiPlug",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 14,
+      "name": "C_POTENS",
+      "category": "Creator",
+      "followers": 30000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/C_POTENS",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 15,
+      "name": "CARBZ",
+      "category": "Creator",
+      "followers": 130000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/CarbzXBT",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 16,
+      "name": "Mercek",
+      "category": "Creator",
+      "followers": 116000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/WorldOfMercek",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 17,
+      "name": "MANDO CT",
+      "category": "Creator",
+      "followers": 963000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/XMaximist",
+        "youtube": "https://www.youtube.com/@mando-ct",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 18,
+      "name": "Baby",
+      "category": "Creator",
+      "followers": 103000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "https://x.com/liuxiaoling933",
+        "youtube": "",
+        "discord": "",
+        "website": ""
+      }
+    },
+    {
+      "id": 1767718252531,
+      "name": "Test Smith",
+      "category": "Cooking",
+      "followers": 1100000,
+      "social": {
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "",
+        "youtube": "",
+        "discord": "",
+        "website": "https://www.jpg.store/collection/overexposedmekanism?tab=items"
+      }
+    }
+  ]
+}
