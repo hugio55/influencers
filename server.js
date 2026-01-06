@@ -267,14 +267,22 @@ app.post('/api/admin/influencers', requireAuth, (req, res) => {
     };
 
     if (writeData(data)) {
+        console.log('Data saved to file successfully');
         // Auto-commit to GitHub (async, don't wait)
-        commitToGitHub(data).then(committed => {
-            if (committed) {
-                console.log('Data saved and committed to GitHub - redeploy will start shortly');
-            }
-        });
+        commitToGitHub(data)
+            .then(committed => {
+                if (committed) {
+                    console.log('GitHub commit successful - redeploy will start');
+                } else {
+                    console.log('GitHub commit was skipped or failed');
+                }
+            })
+            .catch(err => {
+                console.error('GitHub commit error:', err.message);
+            });
         res.json({ success: true, message: 'Saved! Redeploy starting (~60 sec)' });
     } else {
+        console.log('Failed to write data to file');
         res.status(500).json({ error: 'Failed to save data' });
     }
 });
@@ -306,4 +314,5 @@ app.get('/admin', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log(`Admin page: http://localhost:${PORT}/admin`);
+    console.log(`GitHub auto-commit: ${GITHUB_TOKEN ? 'ENABLED' : 'DISABLED (no token)'}`);
 });
