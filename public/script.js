@@ -9,28 +9,76 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
-// Load data from API
+// Format followers for display (e.g., 14700000 -> "14.7M")
+function formatFollowers(num) {
+    if (num >= 1000000) {
+        const millions = num / 1000000;
+        if (millions >= 10) return `${Math.round(millions)}M`;
+        return millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
+    } else if (num >= 1000) {
+        const thousands = num / 1000;
+        if (thousands >= 100) return `${Math.round(thousands / 10) * 10}K`;
+        return thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
+    }
+    return num.toString();
+}
+
+// Load data - tries API first (Render), falls back to static JSON (Netlify)
 async function loadInfluencers() {
+    let data = null;
+    let useStaticFallback = false;
+
+    // Try API first (works on Render)
     try {
         const res = await fetch('/api/influencers');
-        const data = await res.json();
+        if (res.ok) {
+            const apiData = await res.json();
+            // API returns pre-calculated stats
+            influencersData = apiData.influencers;
+            document.getElementById('filledSlots').textContent = apiData.stats.filledSlots;
+            document.getElementById('totalSlots').textContent = apiData.stats.totalSlots;
+            document.getElementById('currentReach').textContent = apiData.stats.currentReachDisplay;
+            document.getElementById('goalReach').textContent = apiData.stats.goalReachDisplay;
+            renderGrid(apiData.influencers, apiData.stats.totalSlots);
+            return;
+        }
+        useStaticFallback = true;
+    } catch (e) {
+        useStaticFallback = true;
+    }
 
-        influencersData = data.influencers;
+    // Fallback to static JSON (works on Netlify)
+    if (useStaticFallback) {
+        try {
+            const res = await fetch('data/influencers.json');
+            data = await res.json();
 
-        // Update stats
-        document.getElementById('filledSlots').textContent = data.stats.filledSlots;
-        document.getElementById('totalSlots').textContent = data.stats.totalSlots;
-        document.getElementById('currentReach').textContent = data.stats.currentReachDisplay;
-        document.getElementById('goalReach').textContent = data.stats.goalReachDisplay;
+            influencersData = data.influencers;
 
-        // Render grid
-        renderGrid(data.influencers, data.stats.totalSlots);
-    } catch (err) {
-        console.error('Failed to load influencers:', err);
-        // Show error message to user
-        const grid = document.getElementById('slotsGrid');
-        if (grid) {
-            grid.innerHTML = '<div style="text-align:center;padding:40px;color:#ff6b6b;">Failed to load data. Please refresh the page.</div>';
+            // Calculate stats client-side
+            const filledSlots = data.influencers.length;
+            const totalSlots = data.settings.totalSlots;
+            const totalReach = data.influencers.reduce((sum, inf) => sum + (inf.followers || 0), 0);
+
+            // Add formatted followers to each influencer
+            data.influencers.forEach(inf => {
+                inf.followersDisplay = formatFollowers(inf.followers || 0);
+            });
+
+            // Update stats display
+            document.getElementById('filledSlots').textContent = filledSlots;
+            document.getElementById('totalSlots').textContent = totalSlots;
+            document.getElementById('currentReach').textContent = formatFollowers(totalReach);
+            document.getElementById('goalReach').textContent = formatFollowers(data.settings.goalReach);
+
+            // Render grid
+            renderGrid(data.influencers, totalSlots);
+        } catch (err) {
+            console.error('Failed to load influencers:', err);
+            const grid = document.getElementById('slotsGrid');
+            if (grid) {
+                grid.innerHTML = '<div style="text-align:center;padding:40px;color:#ff6b6b;">Failed to load data. Please refresh the page.</div>';
+            }
         }
     }
 }

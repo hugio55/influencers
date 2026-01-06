@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "public": true,
+  "routes": [
+    { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/api/admin/verify", "dest": "/api/admin/verify.js" },
+    { "src": "/api/admin/influencers", "dest": "/api/admin/influencers.js" },
+    { "src": "/api/influencers", "dest": "/api/influencers.js" }
+  ]
+}
