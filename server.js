@@ -41,12 +41,25 @@ function writeData(data) {
 function formatFollowers(num) {
     if (num >= 1000000) {
         const millions = num / 1000000;
+        if (millions >= 10) return `${Math.round(millions)}M`;
         return millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
     } else if (num >= 1000) {
         const thousands = num / 1000;
+        if (thousands >= 100) return `${Math.round(thousands / 10) * 10}K`; // Round to nearest 10K
         return thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
     }
     return num.toString();
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
 // Parse follower string to number (e.g., "14.7M" -> 14700000)
@@ -119,25 +132,46 @@ function requireAuth(req, res, next) {
     next();
 }
 
+// Validate URL format
+function isValidUrl(str) {
+    if (!str || !str.trim()) return true; // Empty is ok
+    try {
+        new URL(str);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 // API: Save all influencers (requires auth)
 app.post('/api/admin/influencers', requireAuth, (req, res) => {
     const { influencers, settings } = req.body;
 
-    // Process influencers - parse follower counts
-    const processedInfluencers = influencers.map((inf, index) => ({
-        id: inf.id || Date.now() + index,
-        name: inf.name || '',
-        category: inf.category || '',
-        followers: parseFollowers(inf.followers),
-        social: {
-            instagram: inf.social?.instagram || '',
-            tiktok: inf.social?.tiktok || '',
-            twitter: inf.social?.twitter || '',
-            youtube: inf.social?.youtube || '',
-            discord: inf.social?.discord || '',
-            website: inf.social?.website || ''
-        }
-    }));
+    // Validate input
+    if (!Array.isArray(influencers)) {
+        return res.status(400).json({ error: 'Invalid data format' });
+    }
+
+    // Process influencers - parse follower counts and sanitize
+    const processedInfluencers = influencers.map((inf, index) => {
+        const name = (inf.name || '').toString().slice(0, 100); // Max 100 chars
+        const category = (inf.category || '').toString().slice(0, 50); // Max 50 chars
+
+        return {
+            id: inf.id || Date.now() + index,
+            name: name,
+            category: category,
+            followers: parseFollowers(inf.followers),
+            social: {
+                instagram: (inf.social?.instagram || '').slice(0, 500),
+                tiktok: (inf.social?.tiktok || '').slice(0, 500),
+                twitter: (inf.social?.twitter || '').slice(0, 500),
+                youtube: (inf.social?.youtube || '').slice(0, 500),
+                discord: (inf.social?.discord || '').slice(0, 500),
+                website: (inf.social?.website || '').slice(0, 500)
+            }
+        };
+    });
 
     const data = {
         settings: settings || readData().settings,

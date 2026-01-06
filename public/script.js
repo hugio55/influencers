@@ -1,6 +1,14 @@
 // Global data
 let influencersData = [];
 
+// Escape HTML to prevent XSS
+function escapeHtml(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
 // Load data from API
 async function loadInfluencers() {
     try {
@@ -19,6 +27,11 @@ async function loadInfluencers() {
         renderGrid(data.influencers, data.stats.totalSlots);
     } catch (err) {
         console.error('Failed to load influencers:', err);
+        // Show error message to user
+        const grid = document.getElementById('slotsGrid');
+        if (grid) {
+            grid.innerHTML = '<div style="text-align:center;padding:40px;color:#ff6b6b;">Failed to load data. Please refresh the page.</div>';
+        }
     }
 }
 
@@ -37,11 +50,11 @@ function renderGrid(influencers, totalSlots) {
             <div class="slot-number">${String(index + 1).padStart(2, '0')}</div>
             <div class="slot-content">
                 <div class="slot-info">
-                    <div class="slot-name">${inf.name}</div>
+                    <div class="slot-name">${escapeHtml(inf.name)}</div>
                 </div>
                 <div class="slot-meta">
-                    <div class="slot-category">${inf.category}</div>
-                    <div class="slot-followers">${inf.followersDisplay}</div>
+                    <div class="slot-category">${escapeHtml(inf.category)}</div>
+                    <div class="slot-followers">${escapeHtml(inf.followersDisplay)}</div>
                 </div>
             </div>
         `;

@@ -665,6 +665,14 @@
         let settings = { goalReach: 150000000, totalSlots: 50 };
         let adminPassword = '';
 
+        // Escape HTML to prevent XSS
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
         // Toggle password visibility
         function togglePassword() {
             const input = document.getElementById('passwordInput');
@@ -781,12 +789,12 @@
                         <span class="drag-handle">&#9776;</span>
                         <span class="influencer-number">${String(index + 1).padStart(2, '0')}</span>
                         <div class="influencer-info">
-                            <span class="influencer-name">${inf.name}</span>
-                            <span class="influencer-category">${inf.category}</span>
-                            <span class="influencer-followers">${inf.followersDisplay || formatFollowers(inf.followers)}</span>
+                            <span class="influencer-name">${escapeHtml(inf.name)}</span>
+                            <span class="influencer-category">${escapeHtml(inf.category)}</span>
+                            <span class="influencer-followers">${escapeHtml(inf.followersDisplay || formatFollowers(inf.followers))}</span>
                         </div>
                         <div class="influencer-socials">
-                            ${socials.length > 0 ? socials.map(s => `<span title="${s}">${getSocialIcon(s)}</span>`).join('') : '<span style="color:#666">No socials</span>'}
+                            ${socials.length > 0 ? socials.map(s => `<span title="${escapeHtml(s)}">${getSocialIcon(s)}</span>`).join('') : '<span style="color:#666">No socials</span>'}
                         </div>
                         <div class="influencer-actions">
                             <button class="btn-icon btn-edit" onclick="editInfluencer(${index})" title="Edit">&#9998;</button>
