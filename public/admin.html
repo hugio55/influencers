@@ -983,10 +983,12 @@
                     body: JSON.stringify({ influencers, settings })
                 });
 
+                const data = await res.json();
+
                 if (res.ok) {
-                    showToast('Changes saved!', 'success');
+                    showToast('Saved! Site will update in ~60 seconds.', 'success');
                 } else {
-                    showToast('Failed to save', 'error');
+                    showToast(data.error || 'Failed to save', 'error');
                 }
             } catch (err) {
                 showToast('Connection error', 'error');

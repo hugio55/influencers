@@ -1,11 +1,18 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const app = express();
 const PORT = process.env.PORT || 3400;
 const DATA_FILE = path.join(__dirname, 'data', 'influencers.json');
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'POPOLOGY2026';
+
+// GitHub config for auto-commit
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO = process.env.GITHUB_REPO || 'hugio55/influencers';
+const GITHUB_FILE_PATH = 'data/influencers.json';
+const GITHUB_BRANCH = 'main';
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,6 +40,87 @@ function writeData(data) {
         return true;
     } catch (error) {
         console.error('Error writing data file:', error);
+        return false;
+    }
+}
+
+// GitHub API helper
+function githubRequest(method, endpoint, body = null) {
+    return new Promise((resolve, reject) => {
+        if (!GITHUB_TOKEN) {
+            return reject(new Error('GITHUB_TOKEN not configured'));
+        }
+
+        const options = {
+            hostname: 'api.github.com',
+            path: endpoint,
+            method: method,
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'User-Agent': 'PopologyAdmin',
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+                try {
+                    const parsed = data ? JSON.parse(data) : {};
+                    if (res.statusCode >= 200 && res.statusCode < 300) {
+                        resolve(parsed);
+                    } else {
+                        reject(new Error(parsed.message || `GitHub API error: ${res.statusCode}`));
+                    }
+                } catch (e) {
+                    reject(e);
+                }
+            });
+        });
+
+        req.on('error', reject);
+        if (body) req.write(JSON.stringify(body));
+        req.end();
+    });
+}
+
+// Commit data to GitHub
+async function commitToGitHub(data) {
+    if (!GITHUB_TOKEN) {
+        console.log('GitHub auto-commit skipped: GITHUB_TOKEN not set');
+        return false;
+    }
+
+    try {
+        console.log('Committing to GitHub...');
+
+        // Get current file to get its SHA
+        const currentFile = await githubRequest(
+            'GET',
+            `/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}?ref=${GITHUB_BRANCH}`
+        );
+
+        // Prepare new content (base64 encoded)
+        const content = Buffer.from(JSON.stringify(data, null, 2)).toString('base64');
+
+        // Update file
+        await githubRequest(
+            'PUT',
+            `/repos/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
+            {
+                message: `Update influencers via admin panel`,
+                content: content,
+                sha: currentFile.sha,
+                branch: GITHUB_BRANCH
+            }
+        );
+
+        console.log('GitHub commit successful');
+        return true;
+    } catch (error) {
+        console.error('GitHub commit failed:', error.message);
         return false;
     }
 }
@@ -179,7 +267,13 @@ app.post('/api/admin/influencers', requireAuth, (req, res) => {
     };
 
     if (writeData(data)) {
-        res.json({ success: true });
+        // Auto-commit to GitHub (async, don't wait)
+        commitToGitHub(data).then(committed => {
+            if (committed) {
+                console.log('Data saved and committed to GitHub - redeploy will start shortly');
+            }
+        });
+        res.json({ success: true, message: 'Saved! Redeploy starting (~60 sec)' });
     } else {
         res.status(500).json({ error: 'Failed to save data' });
     }
