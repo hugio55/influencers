@@ -8,7 +8,12 @@ const DATA_FILE = path.join(__dirname, 'data', 'influencers.json');
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'POPOLOGY2026';
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html for root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Read data from file
 function readData() {
