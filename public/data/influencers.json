@@ -535,6 +535,20 @@
         "discord": "",
         "website": ""
       }
+    },
+    {
+      "id": 1769094236436,
+      "name": "David Meltzer",
+      "category": "Motivation",
+      "followers": 3500000,
+      "social": {
+        "instagram": "https://www.instagram.com/davidmeltzer/",
+        "tiktok": "https://www.tiktok.com/@davidmeltzer",
+        "twitter": "https://x.com/davidmeltzer",
+        "youtube": "https://www.youtube.com/@DavidMeltzer",
+        "discord": "",
+        "website": "https://dmeltzer.com"
+      }
     }
   ]
 }
