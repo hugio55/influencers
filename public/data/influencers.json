@@ -22,7 +22,7 @@
       "id": 2,
       "name": "Stack Pack",
       "category": "Artist",
-      "followers": 2000000,
+      "followers": 2200000,
       "social": {
         "instagram": "https://www.instagram.com/stackpack/",
         "tiktok": "https://www.tiktok.com/@stackpackk",
@@ -78,12 +78,12 @@
       "id": 6,
       "name": "NOW WUT",
       "category": "Creator",
-      "followers": 116000,
+      "followers": 168000,
       "social": {
         "instagram": "https://www.instagram.com/nowwutdotcom/",
         "tiktok": "https://www.tiktok.com/@nowwutdotcom",
-        "twitter": "",
-        "youtube": "",
+        "twitter": "https://x.com/Nowwutdotcom",
+        "youtube": "https://www.youtube.com/@NOWWUT",
         "discord": "",
         "website": ""
       }
@@ -92,7 +92,7 @@
       "id": 7,
       "name": "Randy Bowden Jr",
       "category": "Fashion",
-      "followers": 50000,
+      "followers": 51000,
       "social": {
         "instagram": "https://www.instagram.com/randybowdenjr/",
         "tiktok": "https://www.tiktok.com/@randybowdenjr",
@@ -161,7 +161,7 @@
     {
       "id": 12,
       "name": "Crypto Tony",
-      "category": "Creator",
+      "category": "Financial",
       "followers": 560000,
       "social": {
         "instagram": "",
@@ -246,7 +246,7 @@
       "id": 18,
       "name": "Baby",
       "category": "Creator",
-      "followers": 103000,
+      "followers": 103800,
       "social": {
         "instagram": "",
         "tiktok": "",
@@ -272,7 +272,7 @@
     },
     {
       "id": 20,
-      "name": "sciencegirl",
+      "name": "Science Girl",
       "category": "Creator",
       "followers": 5000000,
       "social": {
